@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const spotifyApi = createApi({
   reducerPath: "spotifyApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://spotify81.p.rapidapi.com",
+    baseUrl: "https://shazam.p.rapidapi.com/",
     prepareHeaders: (headers) => {
       headers.set(
         "X-RapidAPI-Key",
@@ -15,8 +15,8 @@ export const spotifyApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getTopCharts: builder.query({ query: () => "top_200_tracks" }),
+    getCharts: builder.query({ query: () => "charts/track?locale=en-US&pageSize=20&startFrom=0" }),
   }),
 });
 
-export const { useGetTopChartsQuery } = spotifyApi;
+export const { useGetChartsQuery } = spotifyApi;
