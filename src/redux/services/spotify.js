@@ -16,7 +16,13 @@ export const spotifyApi = createApi({
   }),
   endpoints: (builder) => ({
     getCharts: builder.query({ query: () => "charts/track?locale=en-US&pageSize=20&startFrom=0" }),
+    getSongDetails: builder.query({ query: ({ songid }) => `songs/get-details?key=${songid}&locale=en-US` }),
+    getRelatedSongs: builder.query({ query: ({ songid }) => `shazam-songs/list-similarities?id=track-similarities-id-${songid}&locale=en-US` })
   }),
 });
 
-export const { useGetChartsQuery } = spotifyApi;
+export const {
+  useGetChartsQuery,
+  useGetSongDetailsQuery,
+  useGetRelatedSongsQuery,
+} = spotifyApi;
